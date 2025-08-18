@@ -1,0 +1,57 @@
+name: ptqg
+channels:
+  - conda-forge
+  - defaults
+
+# 盡量使用 conda-forge 套件，鎖主要版本以穩定重現
+dependencies:
+  # ---- 核心語言/編譯器 ----
+  - python=3.11
+
+  # ---- 數值運算與科學計算 ----
+  - numpy=1.26.*
+  - scipy=1.11.*
+  - pandas=2.2.*
+  - numba=0.59.*           # 可選：之後若要加速 likelihood
+  - h5py=3.10.*
+
+  # ---- 視覺化 / Jupyter ----
+  - matplotlib=3.8.*
+  - seaborn=0.13.*
+  - jupyterlab=4.*
+  - ipykernel
+  - nbformat
+  - nbconvert
+  - ipywidgets
+  - tqdm
+
+  # ---- 天文 & 物理（資料與單位）----
+  - astropy=6.*
+
+  # ---- MCMC / 後驗視覺化 ----
+  - emcee=3.1.*
+  - arviz=0.16.*
+  - corner=2.2.*
+
+  # ---- 工具 ----
+  - requests
+  - pyyaml
+  - typing_extensions
+
+  # ---- 測試 / 品質 / CI ----
+  - pytest=7.*
+  - pytest-cov=4.*
+  - hypothesis=6.*         # 性質測試（例如投影器封閉性）
+  - black=24.*
+  - isort=5.*
+  - flake8=7.*
+  - mypy=1.*
+  - pre-commit=3.*
+
+  # ---- pip 附加套件（conda 無或要指定子模組時）----
+  - pip
+  - pip:
+      # 若之後要與 CLASS 互動，可安裝 'classy'；目前 C8 僅產出 ini，不需要編譯 CLASS
+      # - classy==3.1.0
+      # jupyter 便利：把 notebooks 轉 PDF/HTML 時常用
+      - jupyterlab_execute_time>=3.1.3
