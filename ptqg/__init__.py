@@ -32,3 +32,5 @@ __all__ = [
     "omega_lambda_numeric",
     "aic_bic",
 ]
+
+from .config import load_manifest, H0_si, annotate_string

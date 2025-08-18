@@ -1,0 +1,40 @@
+project:
+  name: PTQG demo
+  seed: 123          # 全域種子（腳本可覆寫）
+  run_id: null       # 若留空，腳本會自動用時間＋git 短 SHA 產生
+
+cosmology:
+  H0_km_s_Mpc: 70.0  # 這裡用最直觀單位；程式會轉成 s^-1
+  prior_eps:
+    type: planck     # planck | flat
+    mu: 1.47
+    sigma: 0.05
+    low: 0.0
+    high: 4.0
+
+data:
+  csv: data/sparc.csv          # 若不存在且 use_toy_if_missing=true，會退回 toy
+  use_toy_if_missing: true
+  toy_n_gal: 10
+  sample_list: []              # ["NGC_2403", "UGC_4321"]；空陣列=全部
+  filters:
+    min_incl_deg: 0            # 可留 0 表示不過濾
+    max_dist_frac_err: 1.0     # 1.0 表示不過濾
+
+inference:
+  likelihood: gaussian         # gaussian | studentt
+  sigma_sys_kms: 3.0
+  mcmc:
+    walkers: 24
+    steps: 2000
+    burnin: 200
+    thin: 1
+
+viz:
+  save_dir: results
+  annotate:
+    git_sha: true
+    manifest_hash: true
+
+export:
+  artifacts_csv: results/artifacts.csv
