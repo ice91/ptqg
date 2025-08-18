@@ -1,0 +1,9 @@
+# Dev-only tools (已在 environment.yml / requirements.txt 有大多數，這裡給 pip 細分使用)
+pytest==7.4.4
+pytest-cov==4.1.0
+hypothesis==6.108.1
+black==24.4.2
+isort==5.13.2
+flake8==7.1.0
+mypy==1.10.0
+pre-commit==3.7.1
